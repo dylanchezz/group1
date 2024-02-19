@@ -1,5 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 package sc;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -253,7 +251,7 @@ class Calculator {
         exprlabel.setBackground(SystemColor.control);
         exprlabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 20));
         exprlabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        exprlabel.setForeground(UIManager.getColor("white"));
+        exprlabel.setForeground(UIManager.getColor("orange"));
         exprlabel.setBounds(2, 2, 312, 27);
         textPanel.add(exprlabel);
 
@@ -271,7 +269,7 @@ class Calculator {
 
         JPanel butttonPanel = new JPanel();
         butttonPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-        butttonPanel.setBackground(Color.white);
+        butttonPanel.setBackground(Color.black);
         butttonPanel.setBounds(34, 120, 316, 322);
         frmCalculator.getContentPane().add(butttonPanel);
         butttonPanel.setLayout(new GridLayout(0, 5, 0, 0));
@@ -295,7 +293,7 @@ class Calculator {
 
 
         JButton button2 = new JButton("DEL");
-        button2.setBackground(Color.white);
+        button2.setBackground(Color.orange);
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String s=textField.getText();
@@ -322,7 +320,7 @@ class Calculator {
 
 
         JButton button3 = new JButton("<html><body><span>π</span></body></html>");
-        button3.setBackground(Color.white);
+        button3.setBackground(Color.orange);
         button3.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -340,7 +338,7 @@ class Calculator {
 
 
         JButton button4 = new JButton("<html><body><span>X<sup>y</sup></span></body></html>");
-        button4.setBackground(Color.white);
+        button4.setBackground(Color.orange);
         button4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -359,7 +357,7 @@ class Calculator {
 
 
         JButton buttton5 = new JButton("x!");
-        buttton5.setBackground(Color.white);
+        buttton5.setBackground(Color.orange);
         buttton5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -378,7 +376,7 @@ class Calculator {
 
 
         JButton button6 = new JButton("sin");
-        button6.setBackground(Color.white);
+        button6.setBackground(Color.gray);
         button6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -396,7 +394,7 @@ class Calculator {
         butttonPanel.add(button6);
 
         JButton button7 = new JButton("(");
-        button7.setBackground(Color.white);
+        button7.setBackground(Color.gray);
         button7.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -413,7 +411,7 @@ class Calculator {
         butttonPanel.add(button7);
 
         JButton button8 = new JButton(")");
-        button8.setBackground(Color.white);
+        button8.setBackground(Color.gray);
         button8.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -430,7 +428,7 @@ class Calculator {
         butttonPanel.add(button8);
 
         JButton button9 = new JButton("e");
-        button9.setBackground(Color.white);
+        button9.setBackground(Color.gray);
         button9.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -448,7 +446,7 @@ class Calculator {
 
 
         JButton button10 = new JButton("<html><body><span>√</span></body></html>");
-        button10.setBackground(Color.white);
+        button10.setBackground(Color.gray);
         button10.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -465,7 +463,7 @@ class Calculator {
         butttonPanel.add(button10);
 
         JButton button11 = new JButton("cos");
-        button11.setBackground(Color.white);
+        button11.setBackground(Color.gray);
         button11.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -497,7 +495,7 @@ class Calculator {
                 num=true;
             }
         });
-        button12.setBackground(Color.white);
+        button12.setBackground(Color.lightGray);
         button12.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button12);
 
@@ -517,7 +515,7 @@ class Calculator {
                 num=true;
             }
         });
-        button13.setBackground(Color.white);
+        button13.setBackground(Color.lightGray);
         button13.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button13);
 
@@ -537,14 +535,14 @@ class Calculator {
                 num=true;
             }
         });
-        button14.setBackground(Color.white);
+        button14.setBackground(Color.lightGray);
         button14.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button14);
 
 
 
         JButton button15 = new JButton("<html><body><span>÷</span></body></html>");
-        button15.setBackground(Color.white);
+        button15.setBackground(Color.gray);
         button15.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String s=textField.getText();
@@ -570,7 +568,7 @@ class Calculator {
         butttonPanel.add(button15);
 
         JButton button16 = new JButton("tan");
-        button16.setBackground(Color.white);
+        button16.setBackground(Color.gray);
         button16.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -602,7 +600,7 @@ class Calculator {
                 num=true;
             }
         });
-        button17.setBackground(Color.white);
+        button17.setBackground(Color.lightGray);
         button17.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button17);
 
@@ -622,7 +620,7 @@ class Calculator {
                 num=true;
             }
         });
-        button18.setBackground(Color.white);
+        button18.setBackground(Color.lightGray);
         button18.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button18);
 
@@ -642,12 +640,12 @@ class Calculator {
                 num=true;
             }
         });
-        button19.setBackground(Color.white);
+        button19.setBackground(Color.lightGray);
         button19.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button19);
 
         JButton button20 = new JButton("x");
-        button20.setBackground(Color.white);
+        button20.setBackground(Color.gray);
         button20.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -676,7 +674,7 @@ class Calculator {
         butttonPanel.add(button20);
 
         JButton button21 = new JButton("ln");
-        button21.setBackground(Color.white);
+        button21.setBackground(Color.gray);
         button21.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(! "0".equals(textField.getText())) {
@@ -708,7 +706,7 @@ class Calculator {
                 num=true;
             }
         });
-        button22.setBackground(Color.white);
+        button22.setBackground(Color.lightGray);
         button22.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button22);
 
@@ -728,7 +726,7 @@ class Calculator {
                 num=true;
             }
         });
-        button23.setBackground(Color.white);
+        button23.setBackground(Color.lightGray);
         button23.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button23);
 
@@ -748,12 +746,12 @@ class Calculator {
                 num=true;
             }
         });
-        button24.setBackground(Color.white);
+        button24.setBackground(Color.lightGray);
         button24.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button24);
 
         JButton button25 = new JButton("-");
-        button25.setBackground(Color.white);
+        button25.setBackground(Color.gray);
         button25.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String s=textField.getText();
@@ -781,7 +779,7 @@ class Calculator {
         butttonPanel.add(button25);
 
         JButton button26 = new JButton("<html><body><span>log<sub>10</sub></span></body></html>");
-        button26.setBackground(Color.white);
+        button26.setBackground(Color.gray);
         button26.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         button26.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -798,7 +796,7 @@ class Calculator {
         butttonPanel.add(button26);
 
         JButton button27 = new JButton(".");
-        button27.setBackground(Color.white);
+        button27.setBackground(Color.gray);
         button27.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String s=textField.getText();
@@ -836,7 +834,7 @@ class Calculator {
                 num=true;
             }
         });
-        button28.setBackground(Color.white);
+        button28.setBackground(Color.gray);
         button28.setFont(new Font("Calibri Light", Font.PLAIN, 17));
         butttonPanel.add(button28);
 
@@ -868,13 +866,13 @@ class Calculator {
                 token.clear();
             }
         });
-        button1.setBackground(Color.cyan);
-        button29.setBackground(Color.cyan);
-        button29.setFont(new Font("Calibri Light", Font.PLAIN, 22));
+        button1.setBackground(Color.orange);
+        button29.setBackground(Color.gray);
+        button29.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         butttonPanel.add(button29);
 
         JButton button30 = new JButton("+");
-        button30.setBackground(Color.white);
+        button30.setBackground(Color.gray);
         button30.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String s=textField.getText();
@@ -898,9 +896,9 @@ class Calculator {
                 dot=false;
             }
         });
-        button30.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+        button30.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         butttonPanel.add(button30);
-        frmCalculator.setBounds(200, 100, 400, 500);
+        frmCalculator.setBounds(250, 150, 450, 550);
         frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
