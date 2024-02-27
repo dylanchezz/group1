@@ -1,27 +1,24 @@
-package sc;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-class Calculator {
+public class Calculator {
     JFrame frmCalculator;
     String result="",expression="";
-    ArrayList<String> token=new ArrayList<String>();
+    ArrayList<String> token= new ArrayList<>();
 
     boolean num=false;
     boolean dot=false;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Calculator window = new Calculator();
-                    window.frmCalculator.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                Calculator window = new Calculator();
+                window.frmCalculator.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -31,46 +28,30 @@ class Calculator {
 
     int precedence(String x)
     {
-        int p=10;
-        switch(x) {
-            case "+":
-                p=1;
-                break;
-            case "-":
-                p=2;
-                break;
-            case "x":
-                p=3;
-                break;
-            case "/":
-                p=4;
-                break;
-            case "^":
-                p=6;
-                break;
-            case "!":
-                p=7;
-                break;
-        }
 
-        return p;
+        return switch (x) {
+            case "+" -> 1;
+            case "-" -> 2;
+            case "x" -> 3;
+            case "/" -> 4;
+            case "^" -> 6;
+            case "!" -> 7;
+            default -> 10;
+        };
     }
 
 
     private boolean isoperator(String x)
     {
-        if(x.equals("+") || x.equals("-") || x.equals("x") || x.equals("/") || x.equals("sqrt") || x.equals("^") || x.equals("!") || x.equals("sin") || x.equals("cos") || x.equals("tan") || x.equals("ln") || x.equals("log"))
-            return true;
-        else
-            return false;
+        return x.equals("+") || x.equals("-") || x.equals("x") || x.equals("/") || x.equals("sqrt") || x.equals("^") || x.equals("!") || x.equals("sin") || x.equals("cos") || x.equals("tan") || x.equals("ln") || x.equals("log");
     }
 
     private String infixTopostfix()
     {
-        Stack<String> s=new Stack<String>();
+        Stack<String> s= new Stack<>();
         String y;
         int flag;
-        String p="";
+        StringBuilder p= new StringBuilder();
         token.add(")");
         s.push("(");
         for(String i: token) {
@@ -80,14 +61,14 @@ class Calculator {
                 y=s.pop();
                 while(!y.equals("("))
                 {
-                    p=p+y+",";
+                    p.append(y).append(",");
                     y=s.pop();
                 }
             }else if(isoperator(i)){
                 y=s.pop();
                 flag=0;
                 if(isoperator(y) && precedence(y)>precedence(i)){
-                    p=p+y+",";
+                    p.append(y).append(",");
                     flag=1;
                 }
                 if(flag==0)
@@ -95,23 +76,24 @@ class Calculator {
 
                 s.push(i);
             }else{
-                p=p+i+",";
+                p.append(i).append(",");
             }
         }
+        StringBuilder pBuilder = new StringBuilder(p.toString());
         while(!s.empty()) {
             y=s.pop();
             if(!y.equals("(") && !y.equals(")")) {
-                p+=y+",";
+                pBuilder.append(y).append(",");
             }
         }
-        return p;
+        p = new StringBuilder(pBuilder.toString());
+        return p.toString();
     }
 
 
     private double factorial(double y) {
         double fact=1;
         if(y==0 || y==1) {
-            fact=1;
         }else {
             for(int i=2; i<=y; i++) {
                 fact*=i;
@@ -123,70 +105,41 @@ class Calculator {
 
     private double calculate(double x,double y,String c)
     {
-        double res=0;
-        switch(c)
-        {
-            case "-":
-                res= x-y;
-                break;
-            case "+":
-                res= x+y;
-                break;
-            case "x":
-                res= x*y;
-                break;
-            case "/":
-                res= x/y;
-                break;
-            case "^":
-                res= Math.pow(x,y);
-                break;
-            default :
-                res= 0;
-        }
-        return res;
+        return switch (c) {
+            case "-" -> x - y;
+            case "+" -> x + y;
+            case "x" -> x * y;
+            case "/" -> x / y;
+            case "^" -> Math.pow(x, y);
+            default -> 0;
+        };
     }
 
 
     private double calculate(double y,String c) {
-        double res=0;
-        switch(c) {
-            case "log":
-                res = Math.log10(y);
-                break;
-            case "sin":
-                res= Math.sin(y);
-                break;
-            case "cos":
-                res = Math.cos(y);
-                break;
-            case "tan":
-                res =Math.tan(y);
-                break;
-            case "ln":
-                res= Math.log(y);
-                break;
-            case "sqrt":
-                res= Math.sqrt(y);
-                break;
-            case "!":
-                res=factorial(y);
-                break;
-        }
-        return res;
+        return switch (c) {
+            case "log" -> Math.log10(y);
+            case "sin" -> Math.sin(y);
+            case "cos" -> Math.cos(y);
+            case "tan" -> Math.tan(y);
+            case "ln" -> Math.log(y);
+            case "sqrt" -> Math.sqrt(y);
+            case "!" -> factorial(y);
+            default -> 0;
+        };
     }
 
     private double Eval(String p)
     {
-        String tokens[] = p.split(",");
-        ArrayList<String> token2=new ArrayList<String>();
-        for(int i=0; i<tokens.length; i++) {
-            if(! tokens[i].equals("") && ! tokens[i].equals(" ") && ! tokens[i].equals("\n") && ! tokens[i].equals("  ")) {
-                token2.add(tokens[i]);
+        String[] tokens = p.split(",");
+        ArrayList<String> token2= new ArrayList<>();
+        for (String string : tokens) {
+            if (!string.isEmpty() && !string.equals(" ") && !string.equals("\n") && !string.equals("  ")) {
+                token2.add(string);
             }
         }
 
-        Stack<Double> s=new Stack<Double>();
+        Stack<Double> s= new Stack<>();
         double x,y;
         for(String  i:token2) {
             if(isoperator(i)){
@@ -218,10 +171,10 @@ class Calculator {
 
 
     private void calculateMain() {
-        String tokens[]=expression.split(",");
-        for(int i=0; i<tokens.length; i++) {
-            if(! tokens[i].equals("") && ! tokens[i].equals(" ") && ! tokens[i].equals("\n") && ! tokens[i].equals("  ")) {
-                token.add(tokens[i]);
+        String[] tokens =expression.split(",");
+        for (String s : tokens) {
+            if (!s.isEmpty() && !s.equals(" ") && !s.equals("\n") && !s.equals("  ")) {
+                token.add(s);
             }
         }
         try {
@@ -278,7 +231,7 @@ class Calculator {
         JButton button1 = new JButton("C");
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                textField.setText("0");
+                textField.setText(" ");
                 exprlabel.setText("");
                 expression ="";
                 token.clear();
@@ -292,29 +245,7 @@ class Calculator {
         butttonPanel.add(button1);
 
 
-        JButton button2 = new JButton("DEL");
-        button2.setBackground(Color.orange);
-        button2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String s=textField.getText();
-                if(s != "0" && s.length() > 1) {
-                    String newString = s.substring(0,s.length()-1);
-                    textField.setText(newString);
-                    if(expression.charAt(expression.length()-1)=='.') {
-                        dot=false;
-                    }
-                    if(expression.charAt(expression.length()-1) == ',') {
-                        expression = expression.substring(0,expression.length()-2);
-                    }else {
-                        expression = expression.substring(0,expression.length()-1);
-                    }
-                }else {
-                    textField.setText("0");
-                    expression="";
-                }
-            }
-        });
-        button2.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+        JButton button2 = getjButton(textField);
         butttonPanel.add(button2);
 
 
@@ -752,6 +683,7 @@ class Calculator {
 
         JButton button25 = new JButton("-");
         button25.setBackground(Color.gray);
+
         button25.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String s=textField.getText();
@@ -801,10 +733,10 @@ class Calculator {
             public void actionPerformed(ActionEvent e) {
                 String s=textField.getText();
                 if(s.charAt(s.length()-1)!= '.') {
-                    if(num && dot==false) {
+                    if(num && !dot) {
                         expression+=".";
                         s += ".";
-                    }else if(num==false && dot ==false){
+                    }else if(!num && !dot){
                         expression+=",.";
                         s += ".";
                     }
@@ -844,17 +776,17 @@ class Calculator {
         button29.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 calculateMain();
-                String s="";
+                StringBuilder s= new StringBuilder();
                 token.remove(token.size()-1);
                 for(String i: token) {
                     if(i.equals("/")) {
-                        s+=Character.toString((char)247);
+                        s.append(Character.toString((char) 247));
                     }else if(i.equals("sqrt")) {
-                        s+=Character.toString((char)8730);
+                        s.append(Character.toString((char) 8730));
                     }else if(i.equals("pi")) {
-                        s+=Character.toString((char)960);
+                        s.append(Character.toString((char) 960));
                     }else {
-                        s+=i;
+                        s.append(i);
                     }
                 }
                 exprlabel.setText(s+"=");
@@ -901,5 +833,31 @@ class Calculator {
         frmCalculator.setBounds(250, 150, 450, 550);
         frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-}
 
+    private JButton getjButton(JTextField textField) {
+        JButton button2 = new JButton("DEL");
+        button2.setBackground(Color.orange);
+        button2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String s= textField.getText();
+                if(!Objects.equals(s, "0") && s.length() > 1) {
+                    String newString = s.substring(0,s.length()-1);
+                    textField.setText(newString);
+                    if(expression.charAt(expression.length()-1)=='.') {
+                        dot=false;
+                    }
+                    if(expression.charAt(expression.length()-1) == ',') {
+                        expression = expression.substring(0,expression.length()-2);
+                    }else {
+                        expression = expression.substring(0,expression.length()-1);
+                    }
+                }else {
+                    textField.setText("0");
+                    expression="";
+                }
+            }
+        });
+        button2.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+        return button2;
+    }
+}
